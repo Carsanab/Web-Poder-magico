@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>Poder Mágico - Alquiler de Diversión</title>
+  
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;800;900&family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#ffc174",
+            "primary-container": "#f59e0b",
+            secondary: "#4ae176",
+            "secondary-container": "#00b954",
+            surface: "#12121e",
+            "surface-container": "#181827",
+            "surface-container-high": "#232336",
+            "on-surface": "#f3f0ff",
+            "on-surface-variant": "#c9c4dd"
+          },
+          fontFamily: {
+            headline: ["Bricolage Grotesque", "sans-serif"],
+            body: ["Be Vietnam Pro", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Hoja de estilos personalizada -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-[#0b0a16] text-on-surface font-body antialiased overflow-x-hidden selection:bg-secondary selection:text-black">
+  
+  <!-- HEADER / NAVIGATION -->
+  <!-- HEADER / NAVIGATION -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#0b0a16]/90 backdrop-blur-xl border-b border-secondary/15 transition-shadow duration-300" id="main-header">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 h-20 flex items-center justify-between gap-2">
+    
+    <!-- LOGO PERSONALIZADO -->
+    <a class="flex items-center group shrink-0" href="#">
+      <img src="imagenes/LogoPoderMagico.png" alt="Poder Mágico Logo" class="h-12 md:h-14 w-auto object-contain drop-shadow-[0_0_8px_rgba(74,225,118,0.3)] transition-transform duration-300 group-hover:scale-105" />
+    </a>
+
+    <!-- Center Links (SOLO DESKTOP) -->
+    <nav class="hidden md:flex items-center gap-8 font-body text-sm font-semibold tracking-wide">
+      <a class="text-secondary border-b-2 border-secondary pb-1" href="#inicio">Inicio</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="#juegos">Juegos</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="#diferenciales">Galería</a>
+      <a class="text-on-surface-variant hover:text-secondary transition-colors" href="#contacto">Contacto</a>
+    </nav>
+
+    <!-- Right Side: Redes + WhatsApp + Menú Móvil -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      
+      <!-- Instagram (Color original, SIEMPRE VISIBLE) -->
+      <a aria-label="Instagram" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-[#E4405F] hover:bg-surface-container-high transition-all duration-300 hover:scale-110" href="https://instagram.com" rel="noopener" target="_blank">
+        <span class="material-symbols-outlined text-[20px]">photo_camera</span>
+      </a>
+      
+      <!-- Facebook (Color original, SIEMPRE VISIBLE) -->
+      <a aria-label="Facebook" class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-[#1877F2] hover:bg-surface-container-high transition-all duration-300 hover:scale-110" href="https://facebook.com" rel="noopener" target="_blank">
+        <span class="material-symbols-outlined text-[20px]">public</span>
+      </a>
+      
+      <!-- WhatsApp (VERDE, texto oculto en móvil para ahorrar espacio) -->
+      <a class="flex items-center gap-1.5 bg-[#25d366] hover:bg-[#20ba5a] text-black px-3 py-2 md:px-4 md:py-2 rounded-full font-headline font-bold text-xs md:text-sm tracking-wide shadow-[0_0_18px_rgba(37,211,102,0.5)] transition-transform hover:scale-105" href="https://wa.me/" rel="noopener" target="_blank">
+        <span class="material-symbols-outlined text-[18px]">chat</span>
+        <span class="hidden sm:inline">WhatsApp</span>
+      </a>
+
+      <!-- Botón Menú Móvil (Hamburguesa) - Solo visible en móvil -->
+      <button id="mobile-menu-btn" class="md:hidden w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:bg-surface-container-high transition-colors" aria-label="Abrir menú">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- MENÚ DESPLEGABLE MÓVIL -->
+  <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 right-0 bg-[#0b0a16]/95 backdrop-blur-xl border-b border-secondary/15 shadow-2xl z-50">
+    <nav class="flex flex-col p-6 gap-2 font-body text-lg font-semibold tracking-wide text-center">
+      <a class="mobile-link text-secondary py-3 rounded-lg hover:bg-white/5 transition-colors" href="#inicio">Inicio</a>
+      <a class="mobile-link text-on-surface-variant hover:text-secondary py-3 rounded-lg hover:bg-white/5 transition-colors" href="#juegos">Juegos</a>
+      <a class="mobile-link text-on-surface-variant hover:text-secondary py-3 rounded-lg hover:bg-white/5 transition-colors" href="#diferenciales">Galería</a>
+      <a class="mobile-link text-on-surface-variant hover:text-secondary py-3 rounded-lg hover:bg-white/5 transition-colors" href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="w-full pt-20 relative">
+    <!-- Cosmic Glow Background Blurs -->
+    <div class="absolute top-10 left-10 w-[500px] h-[500px] bg-secondary/15 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+    <div class="absolute top-40 right-10 w-[600px] h-[600px] bg-purple-600/15 rounded-full blur-[160px] pointer-events-none -z-10"></div>
+    <div class="absolute top-[900px] left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-emerald-500/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+
+    <!-- 1. HERO SECTION -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 pb-16 lg:py-20" id="inicio">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <!-- LEFT COLUMN -->
+        <div class="lg:col-span-6 flex flex-col items-start text-left z-10">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#16271c] border border-secondary/40 shadow-[0_0_15px_rgba(74,225,118,0.25)] mb-6">
+            <span class="material-symbols-outlined text-secondary text-base">auto_awesome</span>
+            <span class="text-[11px] md:text-xs uppercase font-extrabold tracking-wider text-secondary">
+              ALQUILER DE INFLABLES, METEGOLES, CAMAS ELÁSTICAS &amp; POOL
+            </span>
+          </div>
+          <h1 class="font-headline font-black text-4xl sm:text-5xl xl:text-6xl text-white tracking-tight leading-[1.08] mb-5">
+            ¡LA FIESTA QUE <br/>
+            <span class="bg-gradient-to-r from-[#ffe484] via-[#ffb95f] to-[#4ae176] bg-clip-text text-transparent neon-text-glow">
+              TODOS QUIEREN!
+            </span>
+          </h1>
+          <p class="font-body text-lg md:text-xl text-on-surface-variant font-medium leading-relaxed mb-8 max-w-xl">
+            Diversión sin parar, energía al máximo y sonrisas garantizadas 😎
+          </p>
+          <div class="w-full sm:w-auto mb-8">
+            <a class="inline-flex items-center justify-center gap-3 bg-secondary hover:bg-secondary-container text-black px-7 py-3.5 rounded-full font-headline font-extrabold text-base md:text-lg tracking-wide shadow-[0_0_25px_rgba(74,225,118,0.55)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(74,225,118,0.8)]" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20consultar%20disponibilidad%20para%20un%20evento" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-2xl font-bold">chat</span>
+              <span>CONSULTÁ POR WHATSAPP</span>
+              <span class="font-black text-lg">›</span>
+            </a>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5 sm:gap-3 text-xs md:text-sm font-semibold">
+            <div class="flex items-center gap-1.5 bg-[#171728] border border-white/10 px-3.5 py-1.5 rounded-full text-on-surface shadow-sm">
+              <span>⭐</span><span>+500 Fiestas Mágicas</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-[#171728] border border-white/10 px-3.5 py-1.5 rounded-full text-on-surface shadow-sm">
+              <span>🛡️</span><span>100% Higienizados y Seguros</span>
+            </div>
+            <div class="flex items-center gap-1.5 bg-[#171728] border border-white/10 px-3.5 py-1.5 rounded-full text-on-surface shadow-sm">
+              <span>⏱️</span><span>Puntualidad y Armado Incluido</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Hero Visual -->
+        <div class="lg:col-span-6 relative flex justify-center items-center">
+          <div class="absolute -inset-2 bg-gradient-to-r from-secondary/40 via-purple-600/30 to-secondary/30 rounded-3xl blur-xl opacity-75"></div>
+          <div class="relative w-full rounded-2xl md:rounded-3xl overflow-hidden neon-border-green bg-[#121124] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
+            <img alt="Equipamiento de fiesta" class="w-full h-[340px] sm:h-[420px] lg:h-[460px] object-cover object-center transform hover:scale-[1.02] transition-transform duration-700" src="imagenes/screen.png"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0b0a16]/80 via-transparent to-transparent pointer-events-none"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DIFFERENTIAL VALUE PROPOSITIONS -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 py-10" id="diferenciales">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Card 1 -->
+        <div class="bg-[#121124]/90 rounded-2xl p-6 text-center flex flex-col items-center justify-start neon-border-green transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(74,225,118,0.35)]">
+          <div class="w-14 h-14 rounded-full bg-secondary/15 flex items-center justify-center text-secondary mb-4">
+            <span class="material-symbols-outlined text-3xl">star</span>
+          </div>
+          <h3 class="font-headline font-bold text-lg text-primary mb-2">Diversión garantizada</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">Juegos que hacen de cada evento un momento inolvidable.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-[#121124]/90 rounded-2xl p-6 text-center flex flex-col items-center justify-start neon-border-green transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(74,225,118,0.35)]">
+          <div class="w-14 h-14 rounded-full bg-secondary/15 flex items-center justify-center text-secondary mb-4">
+            <span class="material-symbols-outlined text-3xl">verified_user</span>
+          </div>
+          <h3 class="font-headline font-bold text-lg text-primary mb-2">Seguridad primero</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">Todos nuestros juegos están en perfecto estado y con supervisión.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-[#121124]/90 rounded-2xl p-6 text-center flex flex-col items-center justify-start neon-border-green transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(74,225,118,0.35)]">
+          <div class="w-14 h-14 rounded-full bg-secondary/15 flex items-center justify-center text-secondary mb-4">
+            <span class="material-symbols-outlined text-3xl">calendar_month</span>
+          </div>
+          <h3 class="font-headline font-bold text-lg text-primary mb-2">Reservá fácil</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">Consultá disponibilidad y hacé tu reserva sin complicaciones.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="bg-[#121124]/90 rounded-2xl p-6 text-center flex flex-col items-center justify-start neon-border-green transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(74,225,118,0.35)]">
+          <div class="w-14 h-14 rounded-full bg-secondary/15 flex items-center justify-center text-secondary mb-4">
+            <span class="material-symbols-outlined text-3xl">celebration</span>
+          </div>
+          <h3 class="font-headline font-bold text-lg text-primary mb-2">Para todo tipo de eventos</h3>
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed">Cumpleaños, reuniones, empresas, colegios y mucho más.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SECTION: NUESTROS JUEGOS -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 py-14" id="juegos">
+      <div class="flex items-center justify-center gap-4 mb-12">
+        <div class="h-[2px] w-12 sm:w-28 bg-gradient-to-r from-transparent via-secondary/70 to-secondary"></div>
+        <div class="flex items-center gap-2">
+          <span class="text-primary text-xl">★</span>
+          <h2 class="font-headline font-black text-2xl sm:text-3xl tracking-widest text-secondary drop-shadow-[0_0_12px_rgba(74,225,118,0.7)]">NUESTROS JUEGOS</h2>
+          <span class="text-primary text-xl">★</span>
+        </div>
+        <div class="h-[2px] w-12 sm:w-28 bg-gradient-to-l from-transparent via-secondary/70 to-secondary"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- GAME 1: INFLABLE -->
+        <div class="bg-[#121124]/95 rounded-2xl overflow-hidden neon-border-green flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(74,225,118,0.35)]">
+          <div>
+            <div class="relative w-full h-52 bg-black/40 overflow-hidden">
+              <img alt="Inflable" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="imagenes/inflable.png"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 pt-12 text-center flex flex-col items-center relative z-10">
+              <div class="w-12 h-12 -mt-10 mb-2 rounded-full bg-[#1e1c36] border border-secondary/50 flex items-center justify-center text-secondary shadow-md relative z-20">
+                <span class="material-symbols-outlined text-2xl">castle</span>
+              </div>
+              <h3 class="font-headline font-extrabold text-xl text-primary tracking-wide mb-2 uppercase">INFLABLE</h3>
+              <p class="font-body text-sm text-on-surface-variant leading-relaxed">Saltá, reí y disfrutá con nuestros inflables de alta calidad y total seguridad.</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a class="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-container text-black py-2.5 rounded-full font-headline font-bold text-sm transition-all shadow-[0_0_12px_rgba(74,225,118,0.3)]" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20consultar%20disponibilidad%20del%20INFLABLE" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Consultar disponibilidad</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GAME 2: METEGOL -->
+        <div class="bg-[#121124]/95 rounded-2xl overflow-hidden neon-border-green flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(74,225,118,0.35)]">
+          <div>
+            <div class="relative w-full h-52 bg-black/40 overflow-hidden">
+              <img alt="Metegol" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="imagenes/metegol.png"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 pt-12 text-center flex flex-col items-center relative z-10">
+              <div class="w-12 h-12 -mt-10 mb-2 rounded-full bg-[#1e1c36] border border-secondary/50 flex items-center justify-center text-primary shadow-md relative z-20">
+                <span class="material-symbols-outlined text-2xl">sports_soccer</span>
+              </div>
+              <h3 class="font-headline font-extrabold text-xl text-primary tracking-wide mb-2 uppercase">METEGOL</h3>
+              <p class="font-body text-sm text-on-surface-variant leading-relaxed">El clásico de siempre, ideal para todas las edades y grupos.</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a class="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-container text-black py-2.5 rounded-full font-headline font-bold text-sm transition-all shadow-[0_0_12px_rgba(74,225,118,0.3)]" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20consultar%20disponibilidad%20del%20METEGOL" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Consultar disponibilidad</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GAME 3: CAMA ELÁSTICA -->
+        <div class="bg-[#121124]/95 rounded-2xl overflow-hidden neon-border-green flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(74,225,118,0.35)]">
+          <div>
+            <div class="relative w-full h-52 bg-black/40 overflow-hidden">
+              <img alt="Cama Elástica" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="imagenes/cama elastica.png"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 pt-12 text-center flex flex-col items-center relative z-10">
+              <div class="w-12 h-12 -mt-10 mb-2 rounded-full bg-[#1e1c36] border border-secondary/50 flex items-center justify-center text-secondary shadow-md relative z-20">
+                <span class="material-symbols-outlined text-2xl">airline_seat_legroom_extra</span>
+              </div>
+              <h3 class="font-headline font-extrabold text-xl text-primary tracking-wide mb-2 uppercase">CAMA ELÁSTICA</h3>
+              <p class="font-body text-sm text-on-surface-variant leading-relaxed">Salto, movimiento y mucha diversión en un solo juego.</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a class="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-container text-black py-2.5 rounded-full font-headline font-bold text-sm transition-all shadow-[0_0_12px_rgba(74,225,118,0.3)]" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20consultar%20disponibilidad%20de%20la%20CAMA%20ELASTICA" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Consultar disponibilidad</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- GAME 4: MESA DE POOL -->
+        <div class="bg-[#121124]/95 rounded-2xl overflow-hidden neon-border-green flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(74,225,118,0.35)]">
+          <div>
+            <div class="relative w-full h-52 bg-black/40 overflow-hidden">
+              <img alt="Mesa de Pool" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="imagenes/mesa-pool.png"/>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent"></div>
+            </div>
+            <div class="p-5 pt-12 text-center flex flex-col items-center relative z-10">
+              <div class="w-12 h-12 -mt-10 mb-2 rounded-full bg-[#1e1c36] border border-secondary/50 flex items-center justify-center text-primary shadow-md relative z-20">
+                <span class="material-symbols-outlined text-2xl">sports_bar</span>
+              </div>
+              <h3 class="font-headline font-extrabold text-xl text-primary tracking-wide mb-2 uppercase">MESA DE POOL</h3>
+              <p class="font-body text-sm text-on-surface-variant leading-relaxed">Demostrá tu puntería y disfrutá de este clásico siempre vigente.</p>
+            </div>
+          </div>
+          <div class="p-5 pt-0">
+            <a class="w-full flex items-center justify-center gap-2 bg-secondary hover:bg-secondary-container text-black py-2.5 rounded-full font-headline font-bold text-sm transition-all shadow-[0_0_12px_rgba(74,225,118,0.3)]" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20consultar%20disponibilidad%20de%20la%20MESA%20DE%20POOL" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-base">chat</span>
+              <span>Consultar disponibilidad</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. BANNER FINAL / CALL TO ACTION -->
+    <section class="max-w-7xl mx-auto px-6 lg:px-12 py-12" id="contacto">
+      <div class="relative bg-gradient-to-r from-[#111024] via-[#1a1738] to-[#111024] rounded-2xl md:rounded-3xl p-8 md:p-12 neon-border-green shadow-[0_15px_40px_rgba(0,0,0,0.8)] overflow-hidden">
+        <div class="absolute top-0 right-0 w-80 h-80 bg-secondary/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="flex items-center gap-5 text-center lg:text-left">
+            <div class="hidden sm:flex w-16 h-16 rounded-full bg-secondary/20 items-center justify-center text-secondary shrink-0 shadow-[0_0_20px_rgba(74,225,118,0.4)]">
+              <span class="material-symbols-outlined text-3xl">auto_fix_high</span>
+            </div>
+            <div>
+              <h2 class="font-headline font-black text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight uppercase">
+                ¡HACÉ DE TU EVENTO <br class="hidden sm:inline"/>
+                <span class="bg-gradient-to-r from-yellow-300 via-primary to-secondary bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(74,225,118,0.5)]">
+                  UN ÉXITO TOTAL!
+                </span>
+              </h2>
+            </div>
+          </div>
+          <div class="flex flex-col items-center lg:items-end gap-4 w-full lg:w-auto text-center lg:text-right">
+            <p class="font-body text-sm sm:text-base text-on-surface-variant font-medium">
+              Consultanos por disponibilidad y precios. ¡Te respondemos rápido!
+            </p>
+            <a class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-secondary hover:bg-secondary-container text-black px-8 py-3.5 rounded-full font-headline font-extrabold text-base tracking-wide shadow-[0_0_25px_rgba(74,225,118,0.6)] transition-all hover:scale-105" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quiero%20hacer%20una%20consulta" rel="noopener" target="_blank">
+              <span class="material-symbols-outlined text-2xl font-bold">chat</span>
+              <span>ESCRIBINOS POR WHATSAPP</span>
+              <span class="font-black text-lg">›</span>
+            </a>
+            <div class="flex items-center gap-6 pt-1">
+              <a class="flex items-center gap-2 text-[#E4405F] hover:text-pink-400 transition-colors text-sm font-semibold" href="https://instagram.com" rel="noopener" target="_blank">
+                <span class="material-symbols-outlined text-lg">photo_camera</span>
+                <span>Instagram</span>
+              </a>
+              <span class="text-white/20">•</span>
+              <a class="flex items-center gap-2 text-[#1877F2] hover:text-blue-400 transition-colors text-sm font-semibold" href="https://facebook.com" rel="noopener" target="_blank">
+                <span class="material-symbols-outlined text-lg">public</span>
+                <span>Facebook</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating WhatsApp Action Button -->
+    <aside class="fixed bottom-6 right-6 z-50">
+      <a aria-label="WhatsApp Directo" class="group flex items-center gap-2 bg-[#25d366] hover:bg-[#20ba5a] text-black px-4 py-3 rounded-full shadow-[0_0_25px_rgba(37,211,102,0.6)] transition-all hover:scale-110" href="https://wa.me/?text=Hola%20Poder%20M%C3%A1gico!%20Quisiera%20consultar%20alquiler%20de%20juegos" rel="noopener" target="_blank">
+        <span class="material-symbols-outlined text-2xl">chat</span>
+        <span class="hidden md:inline font-headline font-extrabold text-sm pr-1">Chatear</span>
+      </a>
+    </aside>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-[#080712] border-t border-secondary/15 py-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col gap-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <img src="imagenes/LogoPoderMagico.png" alt="Poder Mágico Logo" class="h-10 w-auto object-contain" />
+        </div>
+        <div class="flex items-center gap-2 text-xs md:text-sm text-on-surface-variant">
+          <span class="material-symbols-outlined text-secondary text-base">location_on</span>
+          <span>Consulta por zona de cobertura</span>
+        </div>
+        <nav class="flex items-center gap-5 text-xs md:text-sm font-semibold text-on-surface-variant">
+          <a class="hover:text-secondary transition-colors" href="#inicio">Inicio</a>
+          <span class="text-white/20">|</span>
+          <a class="hover:text-secondary transition-colors" href="#juegos">Juegos</a>
+          <span class="text-white/20">|</span>
+          <a class="hover:text-secondary transition-colors" href="#diferenciales">Galería</a>
+          <span class="text-white/20">|</span>
+          <a class="hover:text-secondary transition-colors" href="#contacto">Contacto</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a aria-label="Instagram" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-[#E4405F] hover:bg-surface-container-high transition-colors" href="https://instagram.com" rel="noopener" target="_blank">
+            <span class="material-symbols-outlined text-base">photo_camera</span>
+          </a>
+          <a aria-label="Facebook" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-[#1877F2] hover:bg-surface-container-high transition-colors" href="https://facebook.com" rel="noopener" target="_blank">
+            <span class="material-symbols-outlined text-base">public</span>
+          </a>
+          <a aria-label="WhatsApp" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-[#25d366] hover:bg-surface-container-high transition-colors" href="https://wa.me/" rel="noopener" target="_blank">
+            <span class="material-symbols-outlined text-base">chat</span>
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] md:text-xs text-on-surface-variant/70 uppercase tracking-widest font-semibold">
+        <p>PODER MÁGICO • DIVERSIÓN • EVENTOS • REUNIONES • CUMPLEAÑOS</p>
+        <p>© 2024 PODER MÁGICO. TODOS LOS DERECHOS RESERVADOS.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Archivo JavaScript personalizado -->
+  <script src="js/main.js"></script>
+</body>
+</html>

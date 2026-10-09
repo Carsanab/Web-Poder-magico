@@ -1,0 +1,37 @@
+/* =========================================
+   ESTILOS PERSONALIZADOS - PODER MÁGICO
+   ========================================= */
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+}
+
+/* Ocultar barra de scroll para un look más limpio */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll suave para los enlaces de anclaje */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Efectos de Neón */
+.neon-border-green {
+  border: 1.5px solid rgba(74, 225, 118, 0.65);
+  box-shadow: 0 0 15px rgba(74, 225, 118, 0.25), inset 0 0 10px rgba(74, 225, 118, 0.08);
+}
+
+.neon-text-glow {
+  text-shadow: 0 0 20px rgba(255, 193, 116, 0.5), 0 0 35px rgba(245, 158, 11, 0.4);
+}
+
+.neon-green-glow {
+  box-shadow: 0 0 25px rgba(74, 225, 118, 0.45);
+}
