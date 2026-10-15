@@ -250,15 +250,20 @@ function actualizarCarrito() {
   const totalPrecio = document.getElementById('total-precio');
   
   carrito = [];
-  let total = 0;
+  let subtotal = 0;
   
   checkboxes.forEach(checkbox => {
     carrito.push({
       nombre: checkbox.dataset.nombre,
       precio: parseInt(checkbox.dataset.precio)
     });
-    total += parseInt(checkbox.dataset.precio);
+    subtotal += parseInt(checkbox.dataset.precio);
   });
+  
+  // Calcular descuento del 5% si hay más de 1 juego
+  const hayDescuento = carrito.length > 1;
+  const descuento = hayDescuento ? Math.round(subtotal * 0.05) : 0;
+  const total = subtotal - descuento;
   
   if (carrito.length === 0) {
     carritoItems.classList.add('hidden');
@@ -269,25 +274,65 @@ function actualizarCarrito() {
     carritoItems.classList.remove('hidden');
     carritoTotal.classList.remove('hidden');
     
-    carritoItems.innerHTML = carrito.map(item => `
+    // Renderizar items + descuento
+    let html = carrito.map(item => `
       <div class="flex justify-between items-center bg-[#0b0a16]/50 p-3 rounded-lg">
         <span class="text-sm text-on-surface">${item.nombre}</span>
         <span class="font-bold text-secondary">${formatearPrecio(item.precio)}</span>
       </div>
     `).join('');
     
-    totalPrecio.textContent = formatearPrecio(total);
+    // Agregar fila de descuento si aplica
+    if (hayDescuento) {
+      html += `
+        <div class="flex justify-between items-center bg-green-900/30 p-3 rounded-lg border border-green-500/30">
+          <span class="text-sm text-green-300 flex items-center gap-2">
+            <span class="material-symbols-outlined text-base">percent</span>
+            Descuento por ${carrito.length} juegos (5%)
+          </span>
+          <span class="font-bold text-green-400">-${formatearPrecio(descuento)}</span>
+        </div>
+      `;
+    }
+    
+    carritoItems.innerHTML = html;
+    
+    // Mostrar total (y subtotal si hay descuento)
+    if (hayDescuento) {
+      totalPrecio.innerHTML = `
+        <div class="flex flex-col items-end">
+          <span class="text-xs text-on-surface-variant line-through">${formatearPrecio(subtotal)}</span>
+          <span class="font-headline font-black text-2xl text-secondary">${formatearPrecio(total)}</span>
+        </div>
+      `;
+    } else {
+      totalPrecio.textContent = formatearPrecio(total);
+    }
   }
 }
 
 function enviarPresupuestoWhatsApp() {
   if (carrito.length === 0) return;
-  const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+  
+  const subtotal = carrito.reduce((sum, item) => sum + item.precio, 0);
+  const hayDescuento = carrito.length > 1;
+  const descuento = hayDescuento ? Math.round(subtotal * 0.05) : 0;
+  const total = subtotal - descuento;
+  
   let mensaje = `${CONFIG.cotizador.mensajeWhatsApp}\n\n`;
+  
   carrito.forEach(item => {
     mensaje += `• ${item.nombre}: ${formatearPrecio(item.precio)}\n`;
   });
-  mensaje += `\n*TOTAL: ${formatearPrecio(total)}*\n\nQuisiera consultar disponibilidad.`;
+  
+  // Agregar descuento al mensaje si aplica
+  if (hayDescuento) {
+    mensaje += `\n🎉 *Descuento 5% por ${carrito.length} juegos:* -${formatearPrecio(descuento)}\n`;
+  }
+  
+  mensaje += `\n*TOTAL: ${formatearPrecio(total)}*`;
+  mensaje += `\n\nQuisiera consultar disponibilidad.`;
+  
   window.open(`https://wa.me/${CONFIG.contacto.whatsapp}?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
