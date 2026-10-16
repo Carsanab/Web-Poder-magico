@@ -35,3 +35,64 @@ html {
 .neon-green-glow {
   box-shadow: 0 0 25px rgba(74, 225, 118, 0.45);
 }
+
+/* =========================================
+   MODAL LIGHTBOX
+   ========================================= */
+
+/* Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Cursor pointer en imágenes de juegos */
+.juego-imagen {
+  cursor: zoom-in;
+  transition: transform 0.5s ease;
+}
+
+.juego-imagen:hover {
+  transform: scale(1.05);
+}
+
+/* Indicador visual de "clic para ampliar" */
+.juego-imagen-wrapper::after {
+  content: '🔍';
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.juego-imagen-wrapper:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Bloquear scroll cuando el modal está abierto */
+body.modal-open {
+  overflow: hidden;
+}

@@ -325,5 +325,28 @@
 
   <!-- Aplicación principal (conecta con Google Sheets) -->
   <script src="js/app.js"></script>
+
+  <!-- MODAL LIGHTBOX PARA IMÁGENES -->
+  <div id="lightbox-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+    <!-- Fondo oscuro con blur -->
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" id="lightbox-overlay"></div>
+    
+    <!-- Contenedor del modal -->
+    <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center animate-fadeIn">
+      <!-- Botón cerrar -->
+      <button id="lightbox-close" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all hover:scale-110 backdrop-blur-sm border border-white/20">
+        <span class="material-symbols-outlined text-2xl">close</span>
+      </button>
+      
+      <!-- Imagen -->
+      <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] object-contain rounded-2xl shadow-[0_0_60px_rgba(74,225,118,0.3)] border-2 border-secondary/30"/>
+      
+      <!-- Info del juego -->
+      <div class="mt-4 text-center">
+        <h3 id="lightbox-title" class="font-headline font-black text-2xl text-white tracking-wide"></h3>
+        <p id="lightbox-price" class="font-headline font-bold text-lg text-secondary mt-1"></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

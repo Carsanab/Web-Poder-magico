@@ -114,20 +114,21 @@ function renderJuegos() {
   juegosContainer.innerHTML = juegosData.map(juego => `
     <div class="bg-[#121124]/95 rounded-2xl overflow-hidden neon-border-green flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_0_30px_rgba(74,225,118,0.35)] h-full" data-juego="${juego.id}">
       <div class="flex flex-col flex-grow">
-        <div class="relative w-full h-52 bg-black/40 overflow-hidden">
-          <img alt="${juego.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="${juego.imagen}"/>
-          <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent"></div>
+        <!-- Wrapper con clase para efecto hover y clic -->
+        <div class="relative w-full h-52 bg-black/40 overflow-hidden juego-imagen-wrapper">
+          <img alt="${juego.nombre}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 juego-imagen" 
+               src="${juego.imagen}"
+               data-nombre="${juego.nombre}"
+               data-precio="${juego.precio}"
+               onclick="abrirLightbox(this)"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#121124] via-transparent to-transparent pointer-events-none"></div>
         </div>
         <div class="p-5 pt-12 text-center flex flex-col items-center relative z-10 flex-grow">
           <div class="w-12 h-12 -mt-10 mb-2 rounded-full bg-[#1e1c36] border border-secondary/50 flex items-center justify-center text-secondary shadow-md relative z-20">
             <span class="material-symbols-outlined text-2xl">${juego.icono}</span>
           </div>
           <h3 class="font-headline font-extrabold text-xl text-primary tracking-wide mb-2 uppercase">${juego.nombre}</h3>
-          
-          <!-- min-h-[60px] asegura que todas las descripciones ocupen el mismo espacio mínimo -->
           <p class="font-body text-sm text-on-surface-variant leading-relaxed mb-3 min-h-[60px]">${juego.descripcion}</p>
-          
-          <!-- mt-auto empuja el precio siempre hacia abajo, alineándolo con los demás -->
           <div class="inline-flex items-center gap-2 bg-secondary/10 px-4 py-2 rounded-full border border-secondary/30 mt-auto">
             <span class="material-symbols-outlined text-secondary text-sm">attach_money</span>
             <span class="font-headline font-bold text-lg text-secondary">${formatearPrecio(juego.precio)}</span>
@@ -135,7 +136,6 @@ function renderJuegos() {
           </div>
         </div>
       </div>
-      
       <div class="p-5 pt-0 space-y-2">
         <button onclick="agregarAlCotizador('${juego.id}')" class="w-full flex items-center justify-center gap-2 bg-secondary/20 hover:bg-secondary/30 text-secondary border border-secondary/50 py-2.5 rounded-full font-headline font-bold text-sm transition-all">
           <span class="material-symbols-outlined text-base">add_shopping_cart</span>
@@ -382,3 +382,55 @@ function updateWhatsAppLinks() {
     }
   });
 }
+
+// =========================================
+// LIGHTBOX / MODAL DE IMAGEN
+// =========================================
+function abrirLightbox(imgElement) {
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('lightbox-img');
+  const modalTitle = document.getElementById('lightbox-title');
+  const modalPrice = document.getElementById('lightbox-price');
+  
+  // Cargar datos
+  modalImg.src = imgElement.src;
+  modalImg.alt = imgElement.alt;
+  modalTitle.textContent = imgElement.dataset.nombre;
+  modalPrice.textContent = formatearPrecio(parseInt(imgElement.dataset.precio)) + ' /evento';
+  
+  // Mostrar modal
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.classList.add('modal-open');
+}
+
+function cerrarLightbox() {
+  const modal = document.getElementById('lightbox-modal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.classList.remove('modal-open');
+}
+
+// Event listeners del lightbox (se ejecutan una sola vez)
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('lightbox-modal');
+  const overlay = document.getElementById('lightbox-overlay');
+  const closeBtn = document.getElementById('lightbox-close');
+  
+  // Cerrar al hacer clic en el fondo
+  if (overlay) {
+    overlay.addEventListener('click', cerrarLightbox);
+  }
+  
+  // Cerrar con el botón X
+  if (closeBtn) {
+    closeBtn.addEventListener('click', cerrarLightbox);
+  }
+  
+  // Cerrar con la tecla Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+      cerrarLightbox();
+    }
+  });
+});
